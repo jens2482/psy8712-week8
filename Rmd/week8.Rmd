@@ -1,0 +1,7 @@
+---
+title: "PSY 8712 Week 8 Project"
+author: "Amanda Jensen"
+output: html_document
+---
+
+### 
