@@ -355,7 +355,34 @@ display: none;
 </div>
 
 
-
+<div id="reproducible-image-and-online-resources" class="section level3">
+<h3>Reproducible Image and Online Resources</h3>
+<p>An image of this project as of <em>March 17 2024</em> can be accessed
+by <a href="https://hub.ovh2.mybinder.org/user/jens2482-psy8712-week8-71cbvnyk/lab">clicking
+this link</a>. An interactive web app is available by <a href="https://hub.ovh2.mybinder.org/user/jens2482-psy8712-week8-71cbvnyk/lab">clicking
+this link</a> instead.</p>
+</div>
+<div id="script-settings-and-resources" class="section level3">
+<h3>Script Settings and Resources</h3>
+<pre class="r"><code>setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+library(tidyverse)</code></pre>
+</div>
+<div id="data-import-and-cleaning" class="section level3">
+<h3>Data Import and Cleaning</h3>
+<p>In this chunk, I cleaned the data using the same techniques we used
+in Week 7, I made sure all the variables had an appropriate class
+designation and changed reverse coded q5 by subtracting all values from
+6.</p>
+<pre class="r"><code>week8_tbl &lt;- read_csv (&quot;../data/week3.csv&quot;) %&gt;%
+  mutate(timeStart = ymd_hms (timeStart)) %&gt;%
+  mutate(condition = factor(condition, 
+                            levels = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;), 
+                            labels = c(&quot;Block A&quot;, &quot;Block B&quot;, &quot;Control&quot;))) %&gt;%
+  mutate(gender = factor(gender, 
+                         levels = c(&quot;M&quot;, &quot;F&quot;), 
+                         labels = c(&quot;Male&quot;, &quot;Female&quot;))) %&gt;%
+  mutate(q5 = 6 - q5)</code></pre>
+</div>
 
 
 

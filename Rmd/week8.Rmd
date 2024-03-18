@@ -1,7 +1,32 @@
 ---
 title: "PSY 8712 Week 8 Project"
 author: "Amanda Jensen"
-output: html_document
+output: 
+  html_document:
+    df_print: paged
 ---
 
-### 
+### Reproducible Image and Online Resources
+An image of this project as of *`r format(Sys.Date(), '%B %d %Y')`* can be accessed by [clicking this link](https://hub.ovh2.mybinder.org/user/jens2482-psy8712-week8-71cbvnyk/lab).
+An interactive web app is available by [clicking this link](https://hub.ovh2.mybinder.org/user/jens2482-psy8712-week8-71cbvnyk/lab) instead.
+
+### Script Settings and Resources
+```{r setup, warning = FALSE, message = FALSE}
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+library(tidyverse)
+```
+
+### Data Import and Cleaning
+In this chunk, I cleaned the data using the same techniques we used in Week 7, I made sure all the variables had an appropriate class designation and changed reverse coded q5 by subtracting all values from 6. 
+```{r data_import, warning = FALSE, message = FALSE}
+week8_tbl <- read_csv ("../data/week3.csv") %>%
+  mutate(timeStart = ymd_hms (timeStart)) %>%
+  mutate(condition = factor(condition, 
+                            levels = c("A", "B", "C"), 
+                            labels = c("Block A", "Block B", "Control"))) %>%
+  mutate(gender = factor(gender, 
+                         levels = c("M", "F"), 
+                         labels = c("Male", "Female"))) %>%
+  mutate(q5 = 6 - q5)
+```
+
