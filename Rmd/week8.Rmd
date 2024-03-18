@@ -31,7 +31,7 @@ week8_tbl <- read_csv ("../data/week3.csv") %>%
 ```
 
 ### Visualization
-This chunk creates a paginated table for questions 1-6, and I did this using brackets to select just those columns. For the scatterplot I compared the mean of the row for questions 1-6 to the mean of the row for questions 8-10 and added some jitter to make reduce point overlap.
+This chunk creates a paginated table for questions 1-6, and I did this using brackets to select just those columns. For the scatterplot I compared the mean of the row for questions 1-6 to the mean of the row for questions 8-10.
 ```{r visualization, warning = FALSE, echo = FALSE, message = FALSE}
 
 #table showing q1-16
@@ -40,7 +40,7 @@ week8_tbl[, c(paste0("q", 1:6))]
 #scatterplot
 week8_tbl %>%
   ggplot(aes(x = rowMeans(select(., q1:q6)), y = rowMeans(select(., q8:q10)))) +
-  geom_jitter() +
+  geom_point() +
   geom_smooth(method = "lm", color = "purple") +
   xlab("Mean Scores for Questions 1-6") +
   ylab("Mean Scores for Questions 8-10")

@@ -63,7 +63,7 @@ server <- function(input, output) {
       if(input$sel_error_band == "Display Error Band") {
         data_plot() %>%
         ggplot(aes(x = rowMeans(select(., q1:q6)), y = rowMeans(select(., q8:q10)))) +
-        geom_jitter() +
+        geom_point() +
         geom_smooth(method = "lm", color = "purple") +
         xlab("Mean Scores for Questions 1-6") +
         ylab("Mean Scores for Questions 8-10")}
@@ -71,7 +71,7 @@ server <- function(input, output) {
         #plot without error band if selected
         data_plot() %>%
           ggplot(aes(x = rowMeans(select(., q1:q6)), y = rowMeans(select(., q8:q10)))) +
-          geom_jitter() +
+          geom_point() +
           geom_smooth(method = "lm", color = "purple", se = FALSE) +
           xlab("Mean Scores for Questions 1-6") +
           ylab("Mean Scores for Questions 8-10")}
