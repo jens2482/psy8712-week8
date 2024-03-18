@@ -12,7 +12,7 @@ An interactive web app is available by [clicking this link](https://hub.ovh2.myb
 
 ### Script Settings and Resources
 ```{r setup, warning = FALSE, message = FALSE}
-setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+#setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 library(tidyverse)
 ```
 
@@ -28,5 +28,38 @@ week8_tbl <- read_csv ("../data/week3.csv") %>%
                          levels = c("M", "F"), 
                          labels = c("Male", "Female"))) %>%
   mutate(q5 = 6 - q5)
+```
+
+### Visualization
+This chunk creates a paginated table for questions 1-6, and I did this using brackets to select just those columns. For the scatterplot I compared the mean of the row for questions 1-6 to the mean of the row for questions 8-10 and added some jitter to make reduce point overlap.
+```{r visualization, warning = FALSE, echo = FALSE, message = FALSE}
+
+#table showing q1-16
+week8_tbl[, c(paste0("q", 1:6))]
+
+#scatterplot
+week8_tbl %>%
+  ggplot(aes(x = rowMeans(select(., q1:q6)), y = rowMeans(select(., q8:q10)))) +
+  geom_jitter() +
+  geom_smooth(method = "lm", color = "purple") +
+  xlab("Mean Scores for Questions 1-6") +
+  ylab("Mean Scores for Questions 8-10")
+```
+
+### Analysis
+This chunk calculates the correlation and the corresponding p-value between means for questions 1-6 and questions 8-10.
+```{r analysis, warning = FALSE, echo = FALSE, message = FALSE}
+correlation <- cor.test(rowMeans(week8_tbl[, c(paste0("q", 1:6))]),
+                        rowMeans(week8_tbl[, c(paste0("q", 8:10))]))
+
+correlation
+```
+I observed a correlation of `r str_replace(formatC(correlation$estimate, format = "f", digits = 2), "^0", "")`. However, since the p-value associated with this correlation is not less than .05, it is not statistically significant.
+
+### Data Export
+This chunk calculates the correlation and the corresponding p-value between means fo
+```{r}
+week8_tbl %>%
+  write_csv("week8_tbl_simple.csv") # I am not sure what the simplified/skinny version means. I have a vague memory of you saying it once but I cannot find it in my notes anywhere.
 ```
 
