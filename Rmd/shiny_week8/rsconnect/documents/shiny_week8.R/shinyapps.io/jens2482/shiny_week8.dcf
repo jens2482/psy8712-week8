@@ -5,7 +5,7 @@ account: jens2482
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 11519874
-bundleId: 8386139
+bundleId: 8386600
 url: https://jens2482.shinyapps.io/shiny_week8/
 version: 1
 asMultiple: FALSE
