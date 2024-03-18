@@ -8,7 +8,7 @@ output:
 
 ### Reproducible Image and Online Resources
 An image of this project as of *`r format(Sys.Date(), '%B %d %Y')`* can be accessed by [clicking this link](https://hub.ovh2.mybinder.org/user/jens2482-psy8712-week8-71cbvnyk/lab).
-An interactive web app is available by [clicking this link](https://hub.ovh2.mybinder.org/user/jens2482-psy8712-week8-71cbvnyk/lab) instead.
+An interactive web app is available by [clicking this link](http://jens2482.shinyapps.io/shiny_week8) instead.
 
 ### Script Settings and Resources
 ```{r setup, warning = FALSE, message = FALSE}
@@ -57,8 +57,8 @@ correlation
 I observed a correlation of `r str_replace(formatC(correlation$estimate, format = "f", digits = 2), "^0", "")`. However, since the p-value associated with this correlation is not less than .05, it is not statistically significant.
 
 ### Data Export
-This chunk calculates the correlation and the corresponding p-value between means fo
-```{r}
+This chunk exports the dataset as a CSV file.
+```{r export, warning = FALSE, echo = FALSE, message = FALSE}
 week8_tbl %>%
   write_csv("week8_tbl_simple.csv") # I am not sure what the simplified/skinny version means. I have a vague memory of you saying it once but I cannot find it in my notes anywhere.
 ```
